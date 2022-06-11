@@ -1,0 +1,5 @@
+.vscode/
+build/
+kernel8.img
+kernel8.elf
+.DS_Store
