@@ -43,6 +43,7 @@ unsigned char *lfb;                         /* raw frame buffer address */
  */
 void lfb_init()
 {
+
     mbox[0] = 35*4;
     mbox[1] = MBOX_REQUEST;
 
@@ -101,6 +102,11 @@ void lfb_init()
     }
 }
 
+void get_dims(int *w, int *h) {
+    *w = width;
+    *h = height;
+}
+
 /**
  * Show a picture
  */
@@ -123,21 +129,21 @@ void lfb_showpicture()
     }
 }
 
-void drawPixel(int x, int y, unsigned char attr)
+void lfb_draw_pixel(int x, int y, unsigned char attr)
 {
     int offs = (y * pitch) + (x * 4);
     *((unsigned int*)(lfb + offs)) = vgapal[attr & 0x0f];
 }
 
-void drawRect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
+void lfb_draw_rect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
 {
     int y=y1;
 
     while (y <= y2) {
        int x=x1;
        while (x <= x2) {
-	  if ((x == x1 || x == x2) || (y == y1 || y == y2)) drawPixel(x, y, attr);
-	  else if (fill) drawPixel(x, y, (attr & 0xf0) >> 4);
+	  if ((x == x1 || x == x2) || (y == y1 || y == y2)) lfb_draw_pixel(x, y, attr);
+	  else if (fill) lfb_draw_pixel(x, y, attr);
           x++;
        }
        y++;

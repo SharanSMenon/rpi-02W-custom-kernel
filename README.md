@@ -1,10 +1,11 @@
 # Raspberry Pi Zero 2W Bare Metal Kernel
 
-This is a baremetal kernel for the Raspberry Pi Zero 2W.
+This is a baremetal kernel for the Raspberry Pi Zero 2W. It can also work on a Raspberry Pi 3, since they both use the same chipset.
 
 ## Features implemented
 
 - Write to screen
+- Draw on screen
 - Write to serial console via UART
 - Control power state
 - Control GPIO
